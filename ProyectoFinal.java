@@ -9,8 +9,8 @@ public class App {
     public static void main(final String[] args) throws IOException {
 
         int numJuegos[], numOponentes[], cantEquipos, puntajeTotal[],acumulaPts[], acumuladoJuegos;
-        String equipos[], partidos[],resultados[];
-        String equipo1, equipo2;
+        String equipos[], resultados[];
+        double promedioEquipos;
     
         out.println("Digite la cantidad total de equipos del torneo ");
         cantEquipos = Integer.parseInt(in.readLine());
@@ -19,7 +19,6 @@ public class App {
         numJuegos = new int[cantEquipos];
         numOponentes = new int[cantEquipos];
         puntajeTotal = new int[cantEquipos];
-        partidos = new String[cantEquipos / 2];
         acumulaPts = new int [cantEquipos];
     
         for (int i = 0; i < equipos.length; i++) {
@@ -41,7 +40,13 @@ public class App {
         out.println("Resumen resultados:");
         imprimirCalcularResultadoYCalcularPuntaje(equipos, numJuegos, numOponentes, resultados);
         puntajeTotal(equipos, acumulaPts, numJuegos, numOponentes);
-    
+        promedioEquipos= calcularPromedio(numOponentes);
+        out.println("El promedio de oponentes es: "+promedioEquipos);
+        promedioMayor(numOponentes, equipos,promedioEquipos);
+        equipoMasPartidos(numJuegos, equipos);
+        equipoMenosPuntos(acumulaPts, equipos);
+        equipoMas5(numJuegos, equipos);
+
       }
     
       static void llenarArregloStringYLlenarArregloEnteros(String[] pNombres, int[] pPuntajeTotal, int[] pNumJuegos, int [] pNumOponentes) throws IOException {
@@ -86,7 +91,7 @@ public class App {
     
       static void calcularResultadoYCalcularPuntaje(String[] equipos, int[] numJuegos, int[] numOponentes, String[] resultados, int [] acumulaPts)
           throws IOException {
-        String equipo1, equipo2, respuestaSnitch1, respuestaSnitch2, codigo1, codigo2, acumulador = "";
+        String equipo2, respuestaSnitch1, respuestaSnitch2, codigo1, codigo2, acumulador = "";
         int marcadorEquipo1, contador, marcadorEquipo2, acumPts = 0;
         out.println(numJuegos.length);
         //int i=0;
@@ -168,8 +173,56 @@ public class App {
         
                 
         }
-        
-    
+        static double calcularPromedio(int[] arr) throws IOException {
+            double suma = 0.00;
+            double promedio = 0.00;
+            for(int i=0; i < arr.length; i++){
+                suma = suma + arr[i];
+            }
+            promedio = suma / arr.length;
+            return promedio; 
+        }   
+        static void promedioMayor(int[] numOponentes, String [] equipos, double calcularPromedio) throws IOException {
+            for(int i=0; i < equipos.length; i++){
+                if (numOponentes[i] > calcularPromedio){
+                    out.println("El equipo "+equipos[i]+" tuvo más oponentes que el promedio general");
+                }
+        }   
+    }
+
+    static void equipoMasPartidos(int[] numJuegos, String [] equipos) throws IOException {
+        int masJuegos = 0;
+        String equipoMasJuegos = "";
+        for(int i=0; i < equipos.length; i++){
+            if (numJuegos[i] > masJuegos){
+                masJuegos = numJuegos[i];
+                equipoMasJuegos = equipos[i];
+            }
+        }
+        out.println("El equipo "+equipoMasJuegos+" fue el que tuvo mas partidos en el torneo");   
+    }
+    static void equipoMenosPuntos(int[] puntajeTotal, String [] equipos) throws IOException {
+        int menosPuntos = Max.value;
+        String equipoMenosPuntos = "";
+        for(int i=0; i < equipos.length; i++){
+            if (puntajeTotal[i] < menosPuntos){
+                menosPuntos = puntajeTotal[i];
+                equipoMenosPuntos = equipos[i];
+            }
+    }
+    out.println("El equipo "+equipoMenosPuntos+" fue el que tuvo menos puntos en el torneo");   
+    }
+
+    static void equipoMas5(int[] numJuegos, String [] equipos) throws IOException {
+        String equipoMas5 = "";
+        for(int i=0; i < equipos.length; i++){
+            if (numJuegos[i] >= 5){
+                equipoMas5 = equipoMas5+equipos[i]+"\n";
+            }
+        }
+        out.println("Los siguientes equipos tuvieron más de 5 partidos:");
+        out.println(equipoMas5);
+    }
 }
     
     
