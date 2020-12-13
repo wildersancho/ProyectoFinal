@@ -1,4 +1,4 @@
-package Proyecto;
+//package src;
 
 import java.io.*;
 
@@ -26,7 +26,7 @@ public class ProyectoFinal {
       equipos[i] = "value";
     }
 
-    llenarArregloStringYLlenarArregloEnteros(equipos, numJuegos, numOponentes);
+    llenarArregloStringYLlenarArregloEnteros(equipos, puntajeTotal,numJuegos);
     out.printf("Los equipos son: ");
     imprimirArregloStringYLlenarArregloEnteros(equipos, numJuegos, numOponentes);
     calcularResultadoYCalcularPuntaje(equipos, numJuegos, numOponentes, resultados);
@@ -39,16 +39,17 @@ public class ProyectoFinal {
 
   }
 
-  static void llenarArregloStringYLlenarArregloEnteros(String[] pNombres, int[] pJuegos, int[] pOponentes, int [] pPuntajeTotal)
+  static void llenarArregloStringYLlenarArregloEnteros(String[] pNombres, int[] pPuntajeTotal, int[] pNumJuegos)
       throws IOException {
     String equipo1, equipo2;
 
-    for (int i = 0; i < numJuegos.length; i++) {
+    for (int i = 0; i < pNombres.length; i++) {
       contador = equipoRutina(pNombres);
-    }
+
       out.println("Digite el nombre del equipo " + (i + 1) + ": ");
       equipo1 =  in.readLine();
       pNombres[contador] = equipo1;
+      
       
       out.print("Juego " + (i+1) + " contra: ");
       equipo2 =  in.readLine();
@@ -56,6 +57,8 @@ public class ProyectoFinal {
       contador = equipoRutina(equipos);
       pNombres[contador] = equipo2;
 
+      llenarNumeroJuegos = (pNumJuegos, equipo1, equipo2);
+    }
       //out.println("Digite el numero de juegos del equipo " + pNombres[i] + ": ");
       //pJuegos[i] = Integer.parseInt(in.readLine());
 
@@ -64,7 +67,21 @@ public class ProyectoFinal {
       //pOponentes[i] = Integer.parseInt(in.readLine());
     }
 
-    static void acumularPuntos(int[] acumuladorPuntos, int acumuladorEquipo1, int acumuladorEquipo2)
+    static void llenarNumeroJuegos (int[] pJuegos, equipo1, equipo2){
+      
+      for (int i = 0; i < pNombres.length; i++) {
+        contador = equipoRutina(pNombres);
+        
+        out.println("Digite el numero de juegos del equipo " + equipo1 + ": ");
+        pJuegos[i] = Integer.parseInt(in.readLine());
+
+        out.println("Digite el numero de juegos del equipo " + equipo2 + ": ");
+        pJuegos[i] =  Integer.parseInt(in.readLine());
+
+      }
+
+    }    
+      static void acumularPuntos(int[] acumuladorPuntos, int acumuladorEquipo1, int acumuladorEquipo2)
       throws IOException {
         for (int i = 0; i < acumuladorPuntos.length; i++) {       
           acumuladorPuntos[i] = acumuladorEquipo1;
