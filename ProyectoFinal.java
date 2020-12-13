@@ -1,4 +1,4 @@
-package Proyecto;
+package Proyecto21;
 
 import java.io.*;
 
