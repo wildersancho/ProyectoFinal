@@ -51,7 +51,7 @@ public class App {
             acumuladoJuegos = llenarNumeroJuegos(numJuegos, equipos);
             resultados = new String[acumuladoJuegos];
             for (int i = 0; i < resultados.length; i++) {
-              resultados[i] = "value";
+              resultados[i] = "value";//test
             }
             calcularResultadoYCalcularPuntaje(equipos, numJuegos, numOponentes, resultados, acumulaPts);
             resultadosAcumulados = imprimirCalcularResultadoYCalcularPuntaje(resultados);
